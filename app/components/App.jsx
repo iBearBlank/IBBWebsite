@@ -1,8 +1,9 @@
-import React from 'react';
-import Note from './Note.jsx';
+import React, { PropTypes } from 'react';
 
-export default class App extends React.Component {
-  render() {
-    return <Note />;
-  }
+export default function App(props) {
+  return <div>{props.children}</div>;
 }
+
+App.propTypes = {
+  children: PropTypes.element.isRequired,
+};

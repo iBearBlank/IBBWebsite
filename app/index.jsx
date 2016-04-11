@@ -1,7 +1,6 @@
-import './main.css';
-
-import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.jsx';
+import './main.css';
+import './flexboxgrid.min.css';
+import routes from './config/routes.js';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(routes, document.getElementById('app'));
