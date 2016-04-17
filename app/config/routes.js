@@ -1,12 +1,12 @@
 import React from 'react';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import App from '../components/App';
-import Note from '../components/Note';
+import NoteContainer from '../containers/NoteContainer';
 
 export default (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={Note} />
+      <IndexRoute component={NoteContainer} />
     </Route>
   </Router>
 );
