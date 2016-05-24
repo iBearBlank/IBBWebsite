@@ -1,33 +1,65 @@
-import React from 'react';
-import Paper from 'material-ui/lib/paper';
-import RaisedButton from 'material-ui/lib/raised-button';
+import React, { PropTypes } from 'react';
+import Radium from 'radium';
+import color from 'color';
 
-const style = {
-  height: 100,
-  width: 100,
+// Material UI with Radium attached
+const Paper = Radium(require('material-ui/lib/paper'));
+const RaisedButton = Radium(require('material-ui/lib/raised-button'));
+
+const styles = {
+  button: {
+    color: color('#0074d9').lighten(0.2).hexString(),
+  },
+
+  paper: {
+    height: 100,
+    width: 100,
+    bottom: 15,
+    backgroundColor: '#0074d9',
+    ':hover': {
+      backgroundColor: '#dba4a4',
+    },
+  },
+
+  font: {
+    fontFamily: 'Roboto',
+  },
 };
 
-const font = {
-  fontFamily: 'Roboto',
-};
-
-
-export default function Note(props) {
+function Note(props) {
   return (
     <div>
       <div className="row center-xs">
-        <Paper className="row center-xs" style={style}>
-          <h1 className="row middle-xs" style={font}>{props.timesClicked}</h1>
+        <Paper className="row center-xs" style={styles.paper}>
+          <h1 className="row middle-xs" style={styles.font}>{props.timesClicked}</h1>
         </Paper>
       </div>
       <div className="row center-xs">
         <RaisedButton
-          label="Click me"
+          style={styles.button}
+          label="Add"
           secondary
           type="submit"
-          onClick={props.updateNumber}
+          onClick={props.incNumber}
+        />
+      </div>
+      <div className="row center-xs">
+        <RaisedButton
+          style={styles.button}
+          label="Sub"
+          secondary
+          type="submit"
+          onClick={props.decNumber}
         />
       </div>
     </div>
   );
 }
+
+module.exports = Radium(Note);
+
+Note.propTypes = {
+  timesClicked: PropTypes.number.isRequired,
+  incNumber: PropTypes.func.isRequired,
+  decNumber: PropTypes.func.isRequired,
+};

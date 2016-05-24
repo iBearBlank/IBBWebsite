@@ -1,24 +1,21 @@
 import React from 'react';
 import Note from '../components/Note';
 
-export default class NoteContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { timesClicked: 0 };
+class NoteContainer extends React.Component {
+  state = { timesClicked: 0 };
+  inc = () => this.setState({ timesClicked: this.state.timesClicked + 1 });
+  dec = () => this.setState({ timesClicked: this.state.timesClicked - 1 });
 
-    this.clicked = this.clicked.bind(this);
-  }
-
-  clicked() {
-    this.setState({ timesClicked: this.state.timesClicked + 1 });
-  }
 
   render() {
     return (
       <Note
         timesClicked={this.state.timesClicked}
-        updateNumber={this.clicked}
+        incNumber={this.inc}
+        decNumber={this.dec}
       />
     );
   }
 }
+
+module.exports = NoteContainer;
