@@ -30,3 +30,10 @@ Now you can open your web app in a browser, on mobile devices and start
 hacking. Whenever you modify any of the source files inside the `/app` folder,
 the module bundler ([Webpack](http://webpack.github.io/)) will recompile the
 app on the fly and refresh all the connected browsers.
+
+### Tech
+
+* [ESLint](http://eslint.org) to maintain a consistent code style
+* [Material-UI](http://www.material-ui.com) A Set of React Components that Implement Google's Material Design
+* [Flexbox-Grid](http://flexboxgrid.com) A grid system based on the flex display property
+* [Radium](http://stack.formidable.com/radium) A set of tools to manage inline styles on React elements
