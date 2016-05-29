@@ -12,12 +12,14 @@ const styles = {
   },
 
   paper: {
-    height: 100,
+    display: 'flex',
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: '100%',
     width: 100,
-    bottom: 15,
-    backgroundColor: '#0074d9',
     ':hover': {
-      backgroundColor: '#dba4a4',
+      backgroundColor: '#0074d9',
     },
   },
 
@@ -36,17 +38,16 @@ function Note(props) {
       </div>
       <div className="row center-xs">
         <RaisedButton
+          className="row around-xs"
           style={styles.button}
-          label="Add"
+          label="+"
           secondary
           type="submit"
           onClick={props.incNumber}
         />
-      </div>
-      <div className="row center-xs">
         <RaisedButton
           style={styles.button}
-          label="Sub"
+          label="-"
           secondary
           type="submit"
           onClick={props.decNumber}

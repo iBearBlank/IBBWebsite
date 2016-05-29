@@ -1,21 +1,42 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Note from '../components/Note';
+import { incNumber, decNumber } from '../actions/noteActions';
+import { connect } from 'react-redux';
 
-class NoteContainer extends React.Component {
-  state = { timesClicked: 0 };
-  inc = () => this.setState({ timesClicked: this.state.timesClicked + 1 });
-  dec = () => this.setState({ timesClicked: this.state.timesClicked - 1 });
-
-
-  render() {
-    return (
-      <Note
-        timesClicked={this.state.timesClicked}
-        incNumber={this.inc}
-        decNumber={this.dec}
-      />
-    );
-  }
+function NoteContainer(props) {
+  return (
+    <Note
+      timesClicked={props.notes}
+      incNumber={props.increment}
+      decNumber={props.decrement}
+    />
+  );
 }
 
-module.exports = NoteContainer;
+function mapStateToProps(store) {
+  return {
+    notes: store.noteState,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    decrement() {
+      dispatch(decNumber());
+    },
+    increment() {
+      dispatch(incNumber());
+    },
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NoteContainer);
+
+NoteContainer.propTypes = {
+  notes: PropTypes.number.isRequired,
+  increment: PropTypes.func.isRequired,
+  decrement: PropTypes.func.isRequired,
+};
