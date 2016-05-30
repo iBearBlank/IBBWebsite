@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 import color from 'color';
+import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 
-// Material UI with Radium attached
-const Paper = Radium(require('material-ui/lib/paper'));
-const RaisedButton = Radium(require('material-ui/lib/raised-button'));
+// Material UI with Radium attached -- Not Working Anymore
+// const Paper =Radium(require('material-ui/Paper'));
+// const RaisedButton = Radium(require('material-ui/RaisedButton'));
 
 const styles = {
   button: {

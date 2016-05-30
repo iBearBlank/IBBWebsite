@@ -3,14 +3,16 @@ import Note from '../components/Note';
 import { incNumber, decNumber } from '../actions/noteActions';
 import { connect } from 'react-redux';
 
-function NoteContainer(props) {
-  return (
-    <Note
-      timesClicked={props.notes}
-      incNumber={props.increment}
-      decNumber={props.decrement}
-    />
-  );
+class NoteContainer extends React.Component {
+  render() {
+    return (
+      <Note
+        timesClicked={this.props.notes}
+        incNumber={this.props.increment}
+        decNumber={this.props.decrement}
+      />
+    );
+  }
 }
 
 function mapStateToProps(store) {
