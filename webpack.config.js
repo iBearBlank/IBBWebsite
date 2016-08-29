@@ -16,7 +16,7 @@ const common = {
   // '' is needed to allow imports without an extension.
   // Note the .'s before extension as it will fail to match without!!
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx', '.styl'],
   },
   output: {
     path: PATHS.build,
@@ -27,7 +27,7 @@ const common = {
       {
         // Test expects a RegExp! Note the slashes!
         test: /\.css$/,
-        loaders: ['style', 'css'],
+        loaders: ['style', 'css', 'stylus',],
         // Include accepts either a path or an array of paths.
         include: PATHS.app,
       },
@@ -40,7 +40,21 @@ const common = {
         loaders: ['babel?cacheDirectory'],
         include: PATHS.app,
       },
+      { 
+        test: /\.styl$/,
+        loader: 'style-loader!css-loader!stylus-relative-loader',
+      },
+      {
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"]
+      }
     ],
+    stylus: {
+      use: [require('jeet')()],
+    import: [
+      '~jeet/stylus/jeet/_jeet',
+    ],
+    },
   },
 };
 

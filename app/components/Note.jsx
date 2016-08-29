@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
+import '../grid.scss'; 
 import color from 'color';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -55,6 +56,10 @@ function Note(props) {
           onClick={props.decNumber}
         />
       </div>
+      <section>
+        <aside>sidebar</aside>
+        <article>content</article>
+      </section>
     </div>
   );
 }
