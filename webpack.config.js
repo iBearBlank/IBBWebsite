@@ -44,17 +44,7 @@ const common = {
         test: /\.styl$/,
         loader: 'style-loader!css-loader!stylus-relative-loader',
       },
-      {
-        test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
-      }
     ],
-    stylus: {
-      use: [require('jeet')()],
-    import: [
-      '~jeet/stylus/jeet/_jeet',
-    ],
-    },
   },
 };
 

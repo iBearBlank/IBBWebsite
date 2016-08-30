@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
-import '../grid.scss'; 
+import '../grid.styl'; 
 import color from 'color';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
