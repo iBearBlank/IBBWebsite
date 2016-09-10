@@ -13,14 +13,14 @@
   "devDependencies": {
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.2",
-    "babel-preset-airbnb": "^1.1.1",
+    "babel-preset-airbnb": "^2.0.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-1": "^6.5.0",
-    "css-loader": "^0.23.1",
-    "eslint": "^2.7.0",
-    "eslint-config-airbnb": "^6.2.0",
-    "eslint-plugin-react": "^4.3.0",
+    "css-loader": "^0.24.0",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-plugin-react": "^6.2.0",
     "node-sass": "^3.8.0",
     "redux": "^3.5.2",
     "redux-devtools": "^3.3.1",
@@ -30,13 +30,13 @@
     "stylus-relative-loader": "^3.2.0",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.14.1",
-    "webpack-merge": "^0.7.3"
+    "webpack-merge": "^0.14.1"
   },
   "dependencies": {
     "material-ui": "^0.15.0",
-    "radium": "^0.17.1",
-    "react": "^0.14.8",
-    "react-dom": "^0.14.7",
+    "radium": "^0.18.1",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.0.1",
     "react-tap-event-plugin": "^1.0.0"

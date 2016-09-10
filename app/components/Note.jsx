@@ -34,28 +34,28 @@ const styles = {
 function Note(props) {
   return (
     <div>
-      <div className="row center-xs">
-        <Paper className="row center-xs" style={styles.paper}>
-          <h1 className="row middle-xs" style={styles.font}>{props.timesClicked}</h1>
+      <div>
+        <Paper className="counter" style={styles.paper}>
+          <h1 style={styles.font}>{props.timesClicked}</h1>
         </Paper>
       </div>
-      <div className="row center-xs">
-        <RaisedButton
-          className="row around-xs"
-          style={styles.button}
-          label="+"
-          secondary
-          type="submit"
-          onClick={props.incNumber}
-        />
-        <RaisedButton
-          style={styles.button}
-          label="-"
-          secondary
-          type="submit"
-          onClick={props.decNumber}
-        />
-      </div>
+        <div className="buttons">
+          <RaisedButton
+            className="hello"
+            style={styles.button}
+            label="+"
+            secondary
+            type="submit"
+            onClick={props.incNumber}
+          />
+          <RaisedButton
+            style={styles.button}
+            label="-"
+            secondary
+            type="submit"
+            onClick={props.decNumber}
+          />
+        </div>
       <section>
         <aside>sidebar</aside>
         <article>content</article>
