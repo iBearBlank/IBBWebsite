@@ -1,9 +1,13 @@
-import React, { PropTypes } from 'react';
+import React, { proptypes } from 'react';
 import Radium from 'radium';
-import '../grid.styl'; 
+//import '../grid.styl'; 
 import color from 'color';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+
+if (process.env.BROWSER) {
+ const css = require( '../grid.styl');
+}
 
 // Material UI with Radium attached -- Not Working Anymore
 // const Paper =Radium(require('material-ui/Paper'));
@@ -67,7 +71,7 @@ function Note(props) {
 module.exports = Radium(Note);
 
 Note.propTypes = {
-  timesClicked: PropTypes.number.isRequired,
-  incNumber: PropTypes.func.isRequired,
-  decNumber: PropTypes.func.isRequired,
+  timesClicked: React.PropTypes.number.isRequired,
+  //incNumber: PropTypes.func.isRequired,
+  //decNumber: PropTypes.func.isRequired,
 };

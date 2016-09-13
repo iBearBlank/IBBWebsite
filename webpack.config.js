@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
-  app: path.join(__dirname, 'app'),
+  app: path.join(__dirname, 'client'),
   build: path.join(__dirname, 'build'),
 };
 
@@ -72,6 +72,12 @@ if (TARGET === 'start' || !TARGET) {
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
+
+      new webpack.DefinePlugin({
+        "process.env": {
+          BROWSER: JSON.stringify(true),
+        }
+      }),
     ],
   });
 }

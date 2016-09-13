@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { proptypes } from 'react';
 import ReactDOM from 'react-dom';
 //import './main.css';
 //import './flexboxgrid.min.css';
