@@ -7,10 +7,16 @@ import reducers from '../client/reducers/';
 import { match, RouterContext } from 'react-router';
 import routes from '../client/config/routes.js';
 
+const moltin = require('moltin')({
+  publicId: '',
+  secretKey: ''
+});
+
 const app = express();
 //const request = require('request');
 
 const handleRender = app.get('/', function(req, res) {
+  
   //const defaultState = 1;
   // Create store
   const store = createStore(reducers);

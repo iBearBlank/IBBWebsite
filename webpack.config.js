@@ -1,6 +1,10 @@
 const path = require('path');
 const merge = require('webpack-merge');
+const validate = require('webpack-validator');
 const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+let extractSTYL = new ExtractTextPlugin('stylesheets/[name].styl');
 
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
@@ -8,10 +12,14 @@ const PATHS = {
   build: path.join(__dirname, 'build'),
 };
 
+const parts = require('./lib/parts');
+
 const common = {
   // Entry accepts a path or an object of entries
   // The build chapther contains an example of the latter
-  entry: PATHS.app,
+  entry: {
+    app: PATHS.app,
+  },
   // Add resolve.extensions.
   // '' is needed to allow imports without an extension.
   // Note the .'s before extension as it will fail to match without!!
@@ -24,13 +32,6 @@ const common = {
   },
   module: {
     loaders: [
-      {
-        // Test expects a RegExp! Note the slashes!
-        test: /\.css$/,
-        loaders: ['style', 'css', 'stylus',],
-        // Include accepts either a path or an array of paths.
-        include: PATHS.app,
-      },
       // Set up jsx. This accepts js too thanks to RegExp
       {
         test: /\.jsx?$/,
@@ -40,48 +41,51 @@ const common = {
         loaders: ['babel?cacheDirectory'],
         include: PATHS.app,
       },
-      { 
-        test: /\.styl$/,
-        loader: 'style-loader!css-loader!stylus-relative-loader',
-      },
+       //loader: ExtractTextPlugin.extract('css-loader', 'stylus-loader'),
+       //loader: ExtractTextPlugin.extract('css-loader!stylus-loader'),
+       //loader: 'style-loader!css-loader!stylus-loader',
+       //loaders: ['style', 'css', 'stylus'],
+
+       //loader: extractSTYL.extract['css','sass'],
+       //loader: ExtractTextPlugin.extract('css-loader', 'stylus-loader'),
+       //loaders: ['style-loader', 'css-loader', 'stylus-relative-loader'],
+       //loader: ExtractTextPlugin.extract('style-loader','stylus-relative-loader'),
+      //{test: /\.styl$/i, loader: extractSTYL.extract(['css-loader', 'stylus-loader'])},
+      //{ 
+      //  test: /\.styl$/,
+      //  loader: extractSTYL.extract[("css", "stylus")]
+     // },
     ],
   },
 };
 
-// Default configuration
-if (TARGET === 'start' || !TARGET) {
-  module.exports = merge(common, {
-    devtool: 'eval-source-map',
-    devServer: {
-      contentBase: PATHS.build,
+let config;
 
-      // Enable history API fallback so HTMl5 History API based
-      // routing works. This is a good default that will come
-      // in handy in more complicated setups.
-      historyApiFallback: true,
-      hot: true,
-      inline: true,
-      progress: true,
-
-      // Display only errors to reduce the amount of output.
-      stats: 'errors-only',
-
-      // Parse host and port from env so this is easy to customize.
-      host: process.env.HOST,
-      port: process.env.PORT,
-    },
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-
-      new webpack.DefinePlugin({
-        "process.env": {
-          BROWSER: JSON.stringify(true),
-        }
-      }),
-    ],
-  });
+switch(TARGET) {
+  case 'build':
+    config = merge(
+      common,
+      {
+        devtool: 'source-map'
+      },
+      parts.setupCSS(PATHS.app),
+      parts.minify()
+      
+    );
+    break;
+  default:
+    config = merge(
+      common,
+      {
+        devtool: 'eval-source-map'
+      },
+      parts.setupCSS(PATHS.app),
+      parts.devServer({
+        // Customize host/port here if needed
+        host: process.env.HOST,
+        port: process.env.PORT,
+      })
+    );
 }
 
-if (TARGET === 'build') {
-  module.exports = merge(common, {});
-}
+module.exports = validate(config);
